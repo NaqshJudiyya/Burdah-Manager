@@ -3,3 +3,9 @@
 node_modules/
 .DS_Store
 Thumbs.db
+
+# Firebase
+.firebase/
+firebase-debug.log*
+serviceAccountKey*.json
+*-firebase-adminsdk-*.json

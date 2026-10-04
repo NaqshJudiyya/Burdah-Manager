@@ -1,0 +1,23 @@
+# نشر تلقائي على Firebase Hosting عند كل تحديث إلى main.
+# مطلوب مرة واحدة: إضافة سر باسم FIREBASE_SERVICE_ACCOUNT يحتوي مفتاح حساب خدمة
+# (JSON) له الدور roles/firebasehosting.admin — انظر README.md.
+name: Deploy to Firebase Hosting
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          channelId: live
