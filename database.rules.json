@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "burdah": {
+      "$slug": {
+        ".read": "auth != null && auth.token.email != null && auth.token.email.lower() == 'naqshjudiyya@gmail.com'",
+        ".write": "auth != null && auth.token.email != null && auth.token.email.lower() == 'naqshjudiyya@gmail.com'"
+      }
+    }
+  }
+}
