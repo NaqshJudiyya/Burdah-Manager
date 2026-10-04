@@ -2,8 +2,19 @@
   "rules": {
     "burdah": {
       "$slug": {
-        ".read": "auth != null && auth.token.email != null && auth.token.email.lower() == 'naqshjudiyya@gmail.com'",
-        ".write": "auth != null && auth.token.email != null && auth.token.email.lower() == 'naqshjudiyya@gmail.com'"
+        ".read": "auth != null && auth.token.email != null && (auth.token.email.lower() == 'naqshjudiyya@gmail.com' || root.child('burdah_members').child(auth.token.email.lower().replace('.','_')).child('role').val() !== null)",
+        "sections": {
+          "$key": {
+            ".write": "auth != null && auth.token.email != null && (auth.token.email.lower() == 'naqshjudiyya@gmail.com' || root.child('burdah_members').child(auth.token.email.lower().replace('.','_')).child('sections').child($key).val() === true)"
+          }
+        }
+      }
+    },
+    "burdah_members": {
+      ".read": "auth != null && auth.token.email != null && auth.token.email.lower() == 'naqshjudiyya@gmail.com'",
+      "$emailKey": {
+        ".write": "auth != null && auth.token.email != null && auth.token.email.lower() == 'naqshjudiyya@gmail.com'",
+        ".read": "auth != null && auth.token.email != null && auth.token.email.lower().replace('.','_') == $emailKey"
       }
     }
   }
